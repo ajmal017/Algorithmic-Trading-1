@@ -3,7 +3,7 @@ import yfinance as yf
 msft = yf.Ticker("MSFT")
 
 # get stock info
-msft.info
+info = msft.info
 
 # get historical market data
 hist = msft.history(period="max")
@@ -58,3 +58,6 @@ msft.options
 # get option chain for specific expiration
 opt = msft.option_chain('YYYY-MM-DD')
 # data available via: opt.calls, opt.puts
+
+if __name__ == '__main__':
+	print(info)
