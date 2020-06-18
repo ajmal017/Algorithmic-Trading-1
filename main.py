@@ -18,7 +18,7 @@ def send_mail(stock_data):
 		pe = stock["forwardPE"]
 		pb = stock["priceToBook"]
 		dividends = stock["trailingAnnualDividendRate"]
-		content_html += "<br><p>Stock: {}  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends)
+		content_html += "<br><p>Stock: <strong>{}</strong>  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends)
 	content_html += "<br><h1><strong>NYSE</strong></h1>"
 	for stock in nyse_list[:10]:
 		stock_ticker = stock["ticker"]
@@ -47,7 +47,7 @@ def get_data():
 		json_dict = json.load(json_file)
 		return(json_dict)
 
-@sched.scheduled_job('cron', day_of_week='mon-sat', hour='4,13')
+@sched.scheduled_job('cron', day_of_week='mon-sat', hour='14,22')
 def scheduled_job():
     market_data_compiler.get_stock_data()
     data_dict = get_data()
