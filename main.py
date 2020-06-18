@@ -4,6 +4,7 @@ from datetime import datetime
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+import json
 
 sched = BlockingScheduler()
 
@@ -34,7 +35,7 @@ def send_mail(stock_data):
 	try:
 	    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
 	    response = sg.send(message)
-	    print(response.status_code)
+	    print(response.status_code) 
 	    print(response.body)
 	    print(response.headers)
 	except Exception as e:
