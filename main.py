@@ -9,8 +9,8 @@ import json
 sched = BlockingScheduler()
 
 def send_mail(stock_data):
-	nasdaq_list = stock_data["NASDAQ"]["{}".format(datetime.datetime.now().date())]
-	nyse_list = stock_data["NYSE"]["{}".format(datetime.datetime.now().date())]
+	nasdaq_list = stock_data["NASDAQ"]["{}".format(datetime.now().date())]
+	nyse_list = stock_data["NYSE"]["{}".format(datetime.now().date())]
 	content_html = '<h1><strong>Nasdaq</strong></h1>'
 	for stock in nasdaq_list[:10]:
 		stock_ticker = stock["ticker"]
@@ -30,7 +30,7 @@ def send_mail(stock_data):
 	message = Mail(
     from_email='mamingo@uc.cl',
     to_emails='mamingo@uc.cl',
-    subject='Stock opportunities {}'.format(datetime.now),
+    subject='Stock opportunities {}'.format(datetime.now().date()),
     html_content=content_html)
 	try:
 	    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
