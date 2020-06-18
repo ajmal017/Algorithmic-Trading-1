@@ -18,15 +18,15 @@ def send_mail(stock_data):
 		pe = stock["forwardPE"]
 		pb = stock["priceToBook"]
 		dividends = stock["trailingAnnualDividendRate"]
-		content_html.join("<br><p>Stock: {}  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends))
-	content_html.join("<br><h1><strong>NYSE</strong></h1>")
+		content_html += "<br><p>Stock: {}  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends)
+	content_html += "<br><h1><strong>NYSE</strong></h1>"
 	for stock in nyse_list[:10]:
 		stock_ticker = stock["ticker"]
 		opportunity = stock["opportunity_percentage"]
 		pe = stock["forwardPE"]
 		pb = stock["priceToBook"]
 		dividends = stock["trailingAnnualDividendRate"]
-		content_html.join("<p>Stock: {}  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends))
+		content_html += "<br><p>Stock: {}  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends)
 	message = Mail(
     from_email='mamingo@uc.cl',
     to_emails='mamingo@uc.cl',
