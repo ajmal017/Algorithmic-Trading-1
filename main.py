@@ -26,7 +26,7 @@ def send_mail(stock_data):
 		pe = stock["forwardPE"]
 		pb = stock["priceToBook"]
 		dividends = stock["trailingAnnualDividendRate"]
-		content_html += "<br><p>Stock: {}  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends)
+		content_html += "<br><p>Stock:<strong>{}</strong>  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends)
 	message = Mail(
     from_email='mamingo@uc.cl',
     to_emails='mamingo@uc.cl',
@@ -47,7 +47,7 @@ def get_data():
 		json_dict = json.load(json_file)
 		return(json_dict)
 
-@sched.scheduled_job('cron', day_of_week='mon-sat', hour='14,22')
+@sched.scheduled_job('cron', day_of_week='mon-sat', hour='14,17,22')
 def scheduled_job():
     market_data_compiler.get_stock_data()
     data_dict = get_data()
