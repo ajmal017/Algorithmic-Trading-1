@@ -10,7 +10,7 @@ def open_json_file(file_path):
 		return(json_dict)
 
 def get_stock_data():
-	nasdaq_dict = open_json_file('nasdaq_stocks.json')
+	nasdaq_dict = open_json_file('market_data_analysis/nasdaq_stocks.json')
 	nasdaq_list = []
 	for nasdaq_stock in nasdaq_dict.keys():
 		try:
@@ -22,7 +22,7 @@ def get_stock_data():
 		if stock_dict['opportunity_percentage'] > 0:
 			nasdaq_list.append(stock_dict)
 	new_nasdaq_list = sorted(nasdaq_list, key=lambda k: k['opportunity_percentage']) 
-	nyse_dict = open_json_file('nyse_stocks.json')
+	nyse_dict = open_json_file('market_data_analysis/nyse_stocks.json')
 	nyse_list = []
 	for nyse_stock in nyse_dict.keys():
 		try:
@@ -37,9 +37,9 @@ def get_stock_data():
 	write_opportunity_json(new_nasdaq_list, new_nyse_list)
 
 def write_opportunity_json(nasdaq_list, nyse_list):
-	with open('stock_opportunities.json', 'r') as json_file:
+	with open('market_data_analysis/stock_opportunities.json', 'r') as json_file:
 		current_dict = json.load(json_file)
-	with open('stock_opportunities.json', 'w') as json_file1:
+	with open('market_data_analysis/stock_opportunities.json', 'w') as json_file1:
 		current_dict['NASDAQ'][datetime.date(datetime.now())] = nasdaq_list
 		current_dict['NYSE'][datetime.date(datetime.now())] = nyse_list
 		json.dump(current_dict, json_file1)
@@ -129,8 +129,6 @@ def graham_value_formula(EPS, g):
 
 
 
-if __name__ == '__main__':
-	get_stock_data()
 	
 
 
