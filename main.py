@@ -3,7 +3,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime
 
 sched = BlockingScheduler()
-
+"""
 def send_mail(stock_data):
 	nasdaq_list = stock_data["NASDAQ"]["{}".format(datetime.date(datetime.now()))]
 	nyse_list = stock_data["NYSE"]["{}".format(datetime.date(datetime.now()))]
@@ -31,12 +31,12 @@ def send_mail(stock_data):
     FROM = "mamingo@uc.cl"
     TO = ["mamingo@uc.cl"]
     SUBJECT = "Stock opportunities {}".format(datetime.datetime.now().date())
-    message = """From: {}\r\nTo: {}\r\nSubject: {}\r\n
+    message = ""From: {}\r\nTo: {}\r\nSubject: {}\r\n
     {}
-    """.format(FROM, ",".join(TO), SUBJECT, complete_content)
+    ".format(FROM, ",".join(TO), SUBJECT, complete_content)
     server = smtplib.SMTP(SERVER)
     server.sendmail(FROM, TO, message)
-
+"""
 def get_data():
 	with open("market_data_analysis/stock_opportunities", 'r') as json_file:
 		json_dict = json.load(json_file)
