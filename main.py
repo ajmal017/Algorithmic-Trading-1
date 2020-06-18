@@ -51,6 +51,4 @@ def scheduled_job():
 
 if __name__ == '__main__':
 	pmarket_data_compiler.get_stock_data()
-	data_dict = get_data()
-	send_mail(data_dict)
 	sched.start()
