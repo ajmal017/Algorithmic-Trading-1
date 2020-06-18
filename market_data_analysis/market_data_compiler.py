@@ -35,14 +35,14 @@ def get_stock_data():
 			nyse_list.append(stock_dict)
 	new_nyse_list = sorted(nyse_list, key=lambda k: k['opportunity_percentage']) 
 	write_opportunity_json(new_nasdaq_list, new_nyse_list)
-	
+
 
 def write_opportunity_json(nasdaq_list, nyse_list):
 	with open('market_data_analysis/stock_opportunities.json', 'r') as json_file:
 		current_dict = json.load(json_file)
 	with open('market_data_analysis/stock_opportunities.json', 'w') as json_file1:
-		current_dict['NASDAQ'][datetime.date(datetime.now())] = nasdaq_list
-		current_dict['NYSE'][datetime.date(datetime.now())] = nyse_list
+		current_dict['NASDAQ'][str(datetime.now())] = nasdaq_list
+		current_dict['NYSE'][str(datetime.now())] = nyse_list
 		json.dump(current_dict, json_file1)
 
 def get_specific_stock_data(ticker):
