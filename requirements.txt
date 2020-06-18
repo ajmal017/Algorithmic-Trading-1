@@ -126,7 +126,6 @@ msgpack==0.6.1
 multiaddr==0.0.8
 multipledispatch==0.6.0
 multitasking==0.0.9
-navigator-updater==0.2.1
 nbconvert==5.5.0
 nbformat==4.4.0
 netaddr==0.7.19
