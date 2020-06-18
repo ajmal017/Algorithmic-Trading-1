@@ -42,7 +42,7 @@ def send_mail(stock_data):
 
 
 def get_data():
-	with open("market_data_analysis/stock_opportunities", 'r') as json_file:
+	with open("market_data_analysis/stock_opportunities.json", 'r') as json_file:
 		json_dict = json.load(json_file)
 		return(json_dict)
 
