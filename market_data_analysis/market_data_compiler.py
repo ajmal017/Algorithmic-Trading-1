@@ -35,6 +35,7 @@ def get_stock_data():
 			nyse_list.append(stock_dict)
 	new_nyse_list = sorted(nyse_list, key=lambda k: k['opportunity_percentage']) 
 	write_opportunity_json(new_nasdaq_list, new_nyse_list)
+	
 
 def write_opportunity_json(nasdaq_list, nyse_list):
 	with open('market_data_analysis/stock_opportunities.json', 'r') as json_file:
