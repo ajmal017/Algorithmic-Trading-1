@@ -38,7 +38,7 @@ def send_mail(stock_data):
 	    print(response.body)
 	    print(response.headers)
 	except Exception as e:
-    	print(e.message)
+		print(e.message)
 
 
 def get_data():
@@ -50,7 +50,7 @@ def get_data():
 def scheduled_job():
     market_data_compiler.get_stock_data()
     data_dict = get_data()
-	send_mail(data_dict)
+    send_mail(data_dict)
 
 
 if __name__ == '__main__':
