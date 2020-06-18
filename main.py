@@ -47,7 +47,7 @@ def get_data():
 		json_dict = json.load(json_file)
 		return(json_dict)
 
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
+@sched.scheduled_job('cron', day_of_week='mon-sat', hour='4,13')
 def scheduled_job():
     market_data_compiler.get_stock_data()
     data_dict = get_data()
