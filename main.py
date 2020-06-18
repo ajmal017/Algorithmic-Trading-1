@@ -44,9 +44,9 @@ def get_data():
 
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
 def scheduled_job():
-    pmarket_data_compiler.get_stock_data()
+    market_data_compiler.get_stock_data()
 
 
 if __name__ == '__main__':
-	pmarket_data_compiler.get_stock_data()
+	market_data_compiler.get_stock_data()
 	sched.start()
