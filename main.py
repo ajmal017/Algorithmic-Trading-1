@@ -45,8 +45,6 @@ def get_data():
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
 def scheduled_job():
     pmarket_data_compiler.get_stock_data()
-    data_dict = get_data()
-	send_mail(data_dict)
 
 
 if __name__ == '__main__':
