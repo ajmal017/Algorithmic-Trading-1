@@ -9,8 +9,8 @@ import json
 sched = BlockingScheduler()
 
 def send_mail(stock_data):
-	nasdaq_list = stock_data["NASDAQ"]["{}".format(datetime.now())]
-	nyse_list = stock_data["NYSE"]["{}".format(datetime.now())]
+	nasdaq_list = stock_data["NASDAQ"]["{}".format(datetime.datetime.now().date())]
+	nyse_list = stock_data["NYSE"]["{}".format(datetime.datetime.now().date())]
 	content_html = '<h1><strong>Nasdaq</strong></h1>'
 	for stock in nasdaq_list[:10]:
 		stock_ticker = stock["ticker"]

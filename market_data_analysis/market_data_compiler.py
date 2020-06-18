@@ -41,8 +41,8 @@ def write_opportunity_json(nasdaq_list, nyse_list):
 	with open('market_data_analysis/stock_opportunities.json', 'r') as json_file:
 		current_dict = json.load(json_file)
 	with open('market_data_analysis/stock_opportunities.json', 'w') as json_file1:
-		current_dict['NASDAQ'][str(datetime.now())] = nasdaq_list
-		current_dict['NYSE'][str(datetime.now())] = nyse_list
+		current_dict['NASDAQ'][str(datetime.datetime.now().date())] = nasdaq_list
+		current_dict['NYSE'][str(datetime.datetime.now().date())] = nyse_list
 		json.dump(current_dict, json_file1)
 
 def get_specific_stock_data(ticker):
