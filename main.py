@@ -1,4 +1,5 @@
 from market_data_analysis import market_data_compiler
+from market_opperations import alpaca
 from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime
 import os
@@ -18,7 +19,7 @@ def send_mail(stock_data):
 		pe = stock["forwardPE"]
 		pb = stock["priceToBook"]
 		dividends = stock["trailingAnnualDividendRate"]
-		content_html += "<br><p>Stock: <strong>{}</strong>  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends)
+		content_html += "<br><p>Stock: <strong>{}</strong>  Graham valuation: <strong>{}%</strong>  PE: <strong>{}</strong>  PB: <strong>{}</strong>  Dividends: <strong>{}</strong></p>".format(stock_ticker, opportunity, pe, pb, dividends)
 	content_html += "<br><h1><strong>NYSE</strong></h1>"
 	for stock in nyse_list[:10]:
 		stock_ticker = stock["ticker"]
@@ -26,7 +27,7 @@ def send_mail(stock_data):
 		pe = stock["forwardPE"]
 		pb = stock["priceToBook"]
 		dividends = stock["trailingAnnualDividendRate"]
-		content_html += "<br><p>Stock:<strong>{}</strong>  Graham %: {}%  PE: {}  PB: {}  Dividends: {}</p>".format(stock_ticker, opportunity, pe, pb, dividends)
+		content_html += "<br><p>Stock:<strong>{}</strong>  Graham valuation: <strong>{}%</strong>  PE: <strong>{}%</strong>  PB: <strong>{}%</strong>  Dividends: <strong>{}%</strong></p>".format(stock_ticker, opportunity, pe, pb, dividends)
 	message = Mail(
     from_email='mamingo@uc.cl',
     to_emails='mamingo@uc.cl',
