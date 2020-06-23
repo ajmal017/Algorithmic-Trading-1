@@ -1,6 +1,8 @@
 import json
 import yfinance as yf
 from datetime import datetime
+from bs4 import BeautifulSoup
+from selenium import webdriver
 
 
 
@@ -104,6 +106,7 @@ def get_specific_stock_data(ticker):
 	#print('totalAssets:{} \n priceHint:{} \n dividendRate:{} \n trailingAnnualDividendRate:{} \n trailingEps:{} \n marketCap :{} \n profitMargins:{} \n enterpriseValue:{} \n fiveYearAverageReturn:{}'.format(total_assets, price_hint, dividend_rate, trailingAnnualDividendRate, trailingEps, market_capitalization, profit_margins, enterprise_value, five_year_average_return))
 
 def strategy_1(pe,pb,dividend_rate):
+	"""Graham strategy"""
 	if pe < 9:
 		if pb < 1.2:
 			if dividend_rate > 1:
@@ -115,6 +118,17 @@ def strategy_1(pe,pb,dividend_rate):
 	else:
 		return False
 
+def print_realtime_tape(ticker):
+	driver = webdriver.Chrome()
+	try:
+		while True:
+			driver.get('https://finance.yahoo.com/quote/{}/history?p={}'.format(ticker, ticker))
+			soup = BeautifulSoup(driver.page_source,"lxml")
+			price = soup.find(id="quote-market-notice").find_parent().find("span").text
+			print("{} | {}".format(datetime.now(), price))
+	except KeyboardInterrupt:
+		driver.quit()
+		pass
 
 def get_growth_rate(data):
 	first_quote = data.tail(-1)['Close'].iloc[0]
@@ -127,10 +141,6 @@ def graham_value_formula(EPS, g):
 	valuation = (EPS*(7 + 1*g)*4.4)/3.7
 	return valuation
 
-
-
-
-	
 
 
 
